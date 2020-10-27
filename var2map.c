@@ -7,9 +7,10 @@
 /*=====================================
  * header files
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 /*=====================================
  * internal prototypes
@@ -52,7 +53,7 @@ int var2map(char *namein, char *nameout){
   int j;
   char *fval,*sval;
   FILE *fpin,*fpout;
-  char buf[MAXLINE],buf2[MAXLINE];
+  char buf[MAXLINE];
  
     fpin =fopen(namein,"r");
     fpout=fopen(nameout,"w");
@@ -84,9 +85,9 @@ int var2map(char *namein, char *nameout){
   for(i=1,fval=" ";fval!=NULL;i++){
     fval=fgets(buf,MAXLINE,fpin);
     sval=strchr(buf,'\n');
-    if(sval!=NULL) *sval=NULL;    /* remove newline character from string */
+    if(sval!=NULL) *sval = '\0'; //*sval=NULL;    /* remove newline character from string */
     sval=strchr(buf,'#');
-    if(sval!=NULL) *sval=NULL;    /* delete comments */
+    if(sval!=NULL) *sval = '\0'; //*sval=NULL;    /* delete comments */
     sval=strstr(buf,"kSimplifiedVariant");
     if(sval!=NULL){
       *sval = '>'; /* replace 'k' with mapping operator */
